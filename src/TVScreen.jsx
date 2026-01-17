@@ -117,6 +117,16 @@ const TVScreen = () => {
   }, []);
 
   useEffect(() => {
+    if (!imobiliaria) {
+      const reloadInterval = setInterval(() => {
+        window.location.reload();
+      }, 15000); // 15 segundos
+      
+      return () => clearInterval(reloadInterval);
+    }
+  }, [imobiliaria]);
+
+  useEffect(() => {
     if (imoveis.length > 0 && !isPaused) {
       const interval = setInterval(() => {
         const currentImovel = imoveis[currentImovelIndex];
