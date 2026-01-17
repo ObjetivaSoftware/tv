@@ -8,11 +8,13 @@
   },
   "devDependencies": {
     "vite": "^4.0.0",
-    "@vitejs/plugin-react": "^4.7.0"
+    "@vitejs/plugin-react": "^4.7.0",
+    "terser": "^5.16.0"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:prod": "vite build --mode production"
   }
 }

@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-/*
-const WS_URL = 'ws://192.168.1.115:3344';
-const API_URL = 'https://apitv.gestorimob.com.br';
-*/
-
-const WS_URL = 'wss://apitv.gestorimob.com.br/ws';
-const API_URL = 'https://apitv.gestorimob.com.br';
+// Usar variáveis de ambiente
+const WS_URL = import.meta.env.VITE_WS_URL || 'wss://apitv.gestorimob.com.br/ws';
+const API_URL = import.meta.env.VITE_API_URL || 'https://apitv.gestorimob.com.br';
 
 function generateHash() {
   return Math.random().toString(36).substring(2, 10).toUpperCase();
