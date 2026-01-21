@@ -229,7 +229,7 @@ const TVScreen = () => {
           }}
         >
           {!imobiliaria && (
-            <h1 style={{ fontSize: "5vw", margin: 0, color: "gray" }}>
+            <h1 style={{ fontSize: "5vw", margin: 0, color: "white" }}>
               Gestor TV
             </h1>
           )}
@@ -329,8 +329,8 @@ const TVScreen = () => {
           alignItems: "center",
           justifyContent: "center",
           height: "100vh",
-          background: "#1a1a1a",
-          color: "#fff",
+          background: "#fff",
+          color: "#1a1a1a",
           fontSize: "3vw",
         }}
       >
@@ -365,7 +365,7 @@ const TVScreen = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('${imagemAtual}')`,
+          backgroundImage: `url('${imagemAtual}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "brightness(0.7)",
@@ -453,85 +453,81 @@ const TVScreen = () => {
       >
         <div
           style={{
-            backgroundColor: "#4D5A62",
-            padding: "0vh 0vw",
-            borderRadius: "0vw",
-            width: "100%",
+            backgroundColor: "rgba(102,102,102,0.7)",
+            padding: "4vh 4vw",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "4vw",
           }}
         >
-          <h3
-            style={{
-              position: "relative",
-              left: "12vh",
-              top: "5vh",
-              color: "#fff",
-              fontSize: "2vw",
-              margin: 0,
-              fontWeight: "normal",
-            }}
-          >
-            {imovel.acao}
-          </h3>
-          <h2
-            style={{
-              position: "relative",
-              left: "12vh",
-              top: "5vh",
-              color: "#fff",
-              fontSize: "2vw",
-              margin: 0,
-              fontWeight: "bold",
-            }}
-          >
-            {imovel.titulo}
-          </h2>
-
           <div
             style={{
-              position: "relative",
-              left: "12vh",
-              top: "8vh",
-              color: "#e5e7eb",
-              fontSize: "1.6vw",
-              letterSpacing: "0.02em",
-              margin: 0,
-              fontWeight: "normal",
-              lineHeight: "1.4",
+              flex: 1,
+              color: "#fff",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.2vh",
             }}
           >
-            <span style={{ fontSize: "0.7em" }}>📍</span>
-            {imovel.endereco}
+            <h3
+              style={{
+                margin: 0,
+                fontSize: "2vw",
+                fontWeight: "normal",
+              }}
+            >
+              {imovel.acao}
+            </h3>
+
+            <h2
+              style={{
+                margin: 0,
+                fontSize: "2.4vw",
+                fontWeight: "bold",
+              }}
+            >
+              {imovel.titulo}
+            </h2>
+
+            <div
+              style={{
+                fontSize: "1.3vw",
+                color: "#e5e7eb",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.6vw",
+              }}
+            >
+              <span>📍</span>
+              <span>{imovel.endereco}</span>
+            </div>
           </div>
 
           <div
             style={{
-              position: "absolute",
-              top: "87%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              color: "white",
-              fontSize: "2.3vw",
-              fontWeight: "bold",
+              flex: 1,
+              textAlign: "center",
+              color: "#fff",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.8vh",
             }}
           >
-            <p
+            <span
               style={{
-                margin: 0,
-                fontSize: "1.4",
-                fontWeight: "normal",
-                position: "relative",
-                top: "-2vh",
-                left: "3vh",
+                fontSize: "2vw",
+                color: "#d1d5db",
               }}
             >
               Valor:
-            </p>
+            </span>
+
             <span
               style={{
-                position: "absolute",
-                top: "5vh",
-                left: "-11vh",
-                fontSize: "2.3vw",
+                fontSize: "2.6vw",
                 fontWeight: "bold",
                 whiteSpace: "nowrap",
               }}
@@ -545,30 +541,26 @@ const TVScreen = () => {
                   return null;
                 }
 
-                const valorNumerico = Number(imovel.valor);
+                const valorNumerico = Number(
+                  String(imovel.valor).replace(/\./g, "").replace(",", "."),
+                );
 
-                const valorFormatado = formatBRL(imovel.valor);
-
-                if (!isNaN(valorNumerico)) {
-                  return <span> {valorFormatado}</span>;
+                if (isNaN(valorNumerico) || valorNumerico <= 0) {
+                  return <span>Consulte</span>;
                 }
 
-                return <span>{imovel.valor}</span>;
+                return <span>{formatBRL(valorNumerico)}</span>;
               })()}
             </span>
           </div>
 
           <div
             style={{
+              flex: 1,
               color: "#d1d5db",
               fontSize: "1.5vw",
-              fontWeight: "normal",
-              paddingBottom: "14vh",
-              lineHeight: "0",
-              padding: "2vh 2vw 5vw 2vh",
-              position: "relative",
-              left: "-3vh",
               textAlign: "right",
+              lineHeight: "1.4",
             }}
           >
             {imovel.descricao}
@@ -612,7 +604,7 @@ const TVScreen = () => {
           zIndex: 20,
           fontSize: "1vw",
           color: "rgba(255,255,255,0.7)",
-          backgroundColor: "#4D5A62",
+          backgroundColor: "rgba(102, 102, 102,0.5)",
           padding: "0.8vh 1.2vw",
           borderRadius: "0.4vw",
           backdropFilter: "blur(8px)",
